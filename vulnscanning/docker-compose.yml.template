@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  postgres:
+    image: arminc/clair-db:TODAYS_DATE
+    ports:
+      - 5432:5432/tcp
+  clair:
+    image: arminc/clair-local-scan:v2.0.1
+    ports:
+      - 6060:6060
+      - 6061:6061
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
