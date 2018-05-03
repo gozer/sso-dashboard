@@ -10,10 +10,8 @@ phases:
       - cd ansible-container
       - pip install -e ./ansible-container[docker]
       - cd ansible && ansible-container build --with-volumes ../:/dashboard
-      - cd ../vulnscanning/
       - pip install docker-compose
-      - chmod +x start-clair.sh
-      - ./start-clair.sh
+      - cd vulnscanning/ && chmod +x start-clair.sh && ./start-clair.sh
   post_build:
     commands:
       - rm -rf /root/.docker/config.json
