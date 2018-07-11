@@ -314,7 +314,7 @@ class Rules(object):
 
     def _firefox_info(self):
         release_json = requests.get('https://product-details.mozilla.org/1.0/firefox_versions.json')
-        if release_json.status_code == 200:
+        if release_json.ok:
             return release_json.json()
         else:
             return None
